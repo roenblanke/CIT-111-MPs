@@ -1,0 +1,55 @@
+import java.util.Scanner;
+
+
+public class retireAge {
+    public static void main(String [] args){
+        int totalAge = 0;
+        int totalPpl = 0;
+        double totalSav = 0;
+        
+         while(true){
+            Scanner userInput = new Scanner(System.in);
+            System.out.println("Please enter your savings!");
+            double savings;
+            savings = userInput.nextDouble();
+            
+            System.out.println("Hey there! Please enter your age!");
+            int age;
+            age = userInput.nextInt();
+            
+
+            //this is where we calc avg data
+            //this is the total num of people
+            totalPpl = totalPpl + 1;
+            
+            //this is the avg age of users
+            totalAge = totalAge + age;
+            int avgAge = totalAge / totalPpl;
+            
+            //this is avg savings
+            totalSav = totalSav + savings;
+            double avgSav = totalSav / totalPpl;
+            
+            //age and savings analysis
+            System.out.println("~~~~~~~~~YOUR RETIREMENT STATUS~~~~~~~~");
+            if(age >= 65 && savings >= 25000){
+                System.out.println("You are old and you have enough $$$");
+                System.out.println("You can retire now.");
+            }else if(age < 0){
+                break;
+            } else if(age < 65 && savings >= 25000){
+                System.out.println("You are not old enough to retire ¯\\_(ツ)_/¯");
+                System.out.println("But you do have enough savings! So hold on!");
+            } else if(age >= 65 && savings < 25000){
+                System.out.println("You are old enough to retire, but you do not have enough savings!");
+            } else if(age < 65 && savings < 25000){
+                System.out.println("You are not old enough and you do not have enough savings to retire");
+            }//close if/else chain
+            System.out.println("You are user #" + totalPpl);
+            System.out.println("Average savings: $" + avgSav);
+            System.out.println("Average age: " + avgAge);
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        }//close while sir
+        System.out.println("Thanks for checking your retirement status, please leave.");
+    }//close main method sir
+}//close class sir
