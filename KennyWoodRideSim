@@ -1,0 +1,81 @@
+//import random util so we can make random numbers
+import java.util.Random;
+
+public class RollercoasteSim {
+
+    //these are the constant height thresholds for each rider, we will check 
+    //each groups avg height against these
+    final static int THRILLHEIGHT = 60;
+    final static int THEMEHEIGHT = 48;
+
+    //these are int vars that will go up as we sim rides ebing ridden and then 
+    //use these numbers for the stats method
+    private static int totalRiders = 0;
+    private static int totalFailedRiders = 0;
+    private static int totalSickRiders = 0;
+
+    public static void main(String[] args) {
+
+        //this is the simulation of rides being ride and then the data for the 
+        //whole park is printed after
+        printStat();
+
+        rideBW(3, 71);
+        printStat();
+
+        rideMGR(6, 51);
+        printStat();
+
+        rideBW(10, 58);
+        printStat();
+
+        rideMGR(13, 47);
+        printStat();
+
+        rideBW(8, 62);
+        printStat();
+    }//close main
+    //this is the sim of BW being ridden by a group of people. We take in the
+    //avg height o fthe group of riders and the number of riders in each instance
+
+    public static void rideBW(int riders, int avgHeight) {
+        if (avgHeight >= THRILLHEIGHT) {
+            System.out.println("Riding Black Widow . . . !");
+            totalRiders = totalRiders + riders;
+            Random rand = new Random();
+            int numSickRiders = rand.nextInt(riders);
+
+            //adjust stats variables
+            totalSickRiders = totalSickRiders + numSickRiders;
+        } else {
+            //adjust stats variables
+            totalFailedRiders = totalFailedRiders + riders;
+            System.out.println("ooooh " + riders + "riders were turned away!");
+        }//close if else
+    }//close rideBW
+
+    public static void rideMGR(int riders, int avgHeight) {
+        if (avgHeight >= THEMEHEIGHT) {
+            System.out.println("Riding Merry Go Round . . . !");
+            totalRiders = totalRiders + riders;
+            Random rand = new Random();
+            int numSickRiders = rand.nextInt(riders);
+            //adjust stats variables
+            totalSickRiders = totalSickRiders + numSickRiders;
+        } else {
+            //adjust stats variables
+            totalFailedRiders = totalFailedRiders + riders;
+            System.out.println("ooooh " + riders + "riders were turned away!");
+        }//close if else
+    }//close rideMGR
+
+    //this method merely prints the stats that we have already numbered
+    public static void printStat() {
+        System.out.println("*******RIDER STATS*********");
+        System.out.println("Total Riders: " + totalRiders);
+        System.out.println("Total Failed Ride Attempts: " + totalFailedRiders);
+        System.out.println("Total sick riders: " + totalSickRiders);
+        System.out.println("***************************");
+    }//close printStat
+
+}//close class
